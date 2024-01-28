@@ -1,6 +1,10 @@
-# Model Comparison for Text Sentence Similarity using TOPSIS
+# Text Similarity Model Comparison using TOPSIS
 
-This Python script compares different models for text sentence similarity using the TOPSIS (Technique for Order of Preference by Similarity to Ideal Solution) method. It computes similarity scores between sentences using models obtained from Hugging Face's model hub and ranks the models based on their relative closeness to the ideal solution.
+This repository contains Python code for comparing various text similarity models using the TOPSIS (Technique for Order of Preference by Similarity to Ideal Solution) method. The code utilizes the Hugging Face `transformers` library for loading pre-trained models and calculating text embeddings, and the `scikit-learn` library for computing cosine similarity and implementing TOPSIS.
+
+## Introduction
+
+Text similarity is an important task in natural language processing (NLP), with applications such as duplicate detection, plagiarism detection, and semantic similarity analysis. This project aims to compare different pre-trained models for measuring text similarity using the TOPSIS method.
 
 ## Requirements
 
@@ -10,45 +14,46 @@ This Python script compares different models for text sentence similarity using 
 - `numpy` library
 - `scikit-learn` library
 
+## Installation
+
 You can install the required libraries using pip:
 
 ```bash
 pip install transformers torch numpy scikit-learn
 ```
-
 ## Usage
 
-1. Clone the repository or download the script.
-2. Install the required libraries as mentioned above.
-3. Modify the `model_names` list to include the names of the models you want to compare.
-4. Optionally, adjust the evaluation sentences as needed.
-5. Run the script.
+1. **Clone the Repository**: Use Git to clone the repository to your local machine.
 
-## Description
+    ```bash
+    git clone https://github.com/yourusername/text-similarity-topsis.git
+    ```
 
-- The script loads the specified models and tokenizers from Hugging Face's model hub.
-- It defines a function to compute similarity scores between sentences using the cosine similarity metric.
-- The similarity scores are normalized and used to calculate the ideal and negative-ideal solutions.
-- Euclidean distances to these solutions are computed, and relative closeness is calculated.
-- Finally, the models are ranked based on their relative closeness to the ideal solution.
+2. **Navigate to the Directory**: Move into the cloned directory.
 
-## Example
+    ```bash
+    cd text-similarity-topsis
+    ```
 
-```python
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
+3. **Run the Script**: Execute the Python script to compare text similarity models using TOPSIS.
 
-# Define the models you want to compare
-model_names = ["bert-base-uncased", "roberta-base"]
+    ```bash
+    python compare_similarity_models.py
+    ```
 
-# Specify evaluation sentences
-sentences = ["I am happy", "I am sad"]
+## Explanation
 
-# Load tokenizers and models
-tokenizers = [AutoTokenizer.from_pretrained(model_name) for model_name in model_names]
-models = [AutoModelForSequenceClassification.from_pretrained(model_name) for model_name in model_names]
+The `compare_similarity_models.py` script performs the following steps:
 
-# (Rest of the code goes here)
-```
+1. **Loading Models**: It loads pre-trained models from Hugging Face (`bert-base-uncased`, `roberta-base`, `distilbert-base-uncased`).
+
+2. **Calculating Similarity**: It calculates the cosine similarity matrix between a given set of texts using each model.
+
+3. **TOPSIS Method**: It implements the TOPSIS method to compare the models based on their similarity matrices.
+
+4. **Printing Results**: Finally, it prints the TOPSIS scores and ranks of the models.
+
+## Example Output
+
+After running the script, you will see the output displaying the TOPSIS scores and ranks of the models:
 
